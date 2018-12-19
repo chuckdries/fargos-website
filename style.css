@@ -43,6 +43,10 @@ section ul {
 section li {
     margin-bottom: 1em;
     margin-top: 1em;
+    line-height: 1.2;
+}
+section li p {
+    line-height: 1.6
 }
 .left-gutter {
     text-align: right;
