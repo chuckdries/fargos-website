@@ -1,12 +1,8 @@
 {
-  "name": "gatsby-starter-blog",
-  "private": true,
-  "description": "A starter for a blog powered by Gatsby and Markdown",
+  "name": "fargos-website",
+  "description": "A portfolio site for the one and only Fargo",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
-  },
+  "author": "Chuck Dries <chuck.dries@gmail.com>",
   "dependencies": {
     "gatsby": "^2.1.5",
     "gatsby-image": "^2.0.29",
@@ -31,15 +27,11 @@
     "react-helmet": "^5.2.0",
     "styled-components": "^4.1.3"
   },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
-  "keywords": [
-    "gatsby"
-  ],
   "license": "MIT",
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
+    "url": "git+https://github.com/chuckdries/fargos-website.git"
   },
   "scripts": {
     "build": "gatsby build",
