@@ -1,7 +1,7 @@
 {
   "name": "fargos-website",
   "description": "A portfolio site for the one and only Fargo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Chuck Dries <chuck.dries@gmail.com>",
   "dependencies": {
     "gatsby": "^2.1.5",
