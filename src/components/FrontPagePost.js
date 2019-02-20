@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "gatsby";
 
 const FrontPagePost = ({ post }) => (
   <li>
-    <a href={post.fields.slug}>{post.frontmatter.title}</a>
+    <Link to={post.fields.slug}>{post.frontmatter.title}</Link>
     <p>{post.excerpt}</p>
   </li>
 );
