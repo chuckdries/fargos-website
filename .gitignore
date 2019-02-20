@@ -81,3 +81,6 @@ typings/
 
 # macos dsstore
 .DS_Store
+
+# gastby compiled files
+public/

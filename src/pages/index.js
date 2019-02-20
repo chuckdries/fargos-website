@@ -1,16 +1,33 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
+import React from "react";
+import { Link, graphql } from "gatsby";
+import * as R from "ramda";
 
-import Bio from "../components/bio"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import { rhythm } from "../utils/typography"
+import Bio from "../components/bio";
+import Layout from "../components/layout";
+import SEO from "../components/seo";
+// import { rhythm } from "../utils/typography";
+import FrontPageSection from "../components/FrontPageSection";
+
+const getSection = slug => slug.split("/")[1];
 
 class BlogIndex extends React.Component {
   render() {
-    const { data } = this.props
-    const siteTitle = data.site.siteMetadata.title
-    const posts = data.allMarkdownRemark.edges
+    const { data } = this.props;
+    const siteTitle = data.site.siteMetadata.title;
+    console.log(data.site.siteMetadata.frontPageCategories);
+    const posts = data.allMarkdownRemark.edges;
+    console.log(posts);
+    const { poetry, performance, ...otherCategories } = R.pipe(
+      R.map(R.prop("node")),
+      R.groupBy(
+        R.pipe(
+          R.path(["fields", "slug"]),
+          getSection
+        )
+      )
+    )(posts);
+
+    console.log(otherCategories);
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -19,30 +36,20 @@ class BlogIndex extends React.Component {
           keywords={[`blog`, `gatsby`, `javascript`, `react`]}
         />
         <Bio />
-        {posts.map(({ node }) => {
-          const title = node.frontmatter.title || node.fields.slug
-          return (
-            <div key={node.fields.slug}>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4),
-                }}
-              >
-                <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
-                  {title}
-                </Link>
-              </h3>
-              <small>{node.frontmatter.date}</small>
-              <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
-            </div>
-          )
-        })}
+        <FrontPageSection posts={poetry} title="poetry" />
+        <FrontPageSection posts={performance} title="performance" />
+        {R.map(
+          cat => (
+            <FrontPageSection posts={otherCategories[cat]} title={cat} />
+          ),
+          R.keys(otherCategories)
+        )}
       </Layout>
-    )
+    );
   }
 }
 
-export default BlogIndex
+export default BlogIndex;
 
 export const pageQuery = graphql`
   query {
@@ -66,4 +73,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
