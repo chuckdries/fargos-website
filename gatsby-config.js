@@ -2,14 +2,15 @@ module.exports = {
   siteMetadata: {
     title: `Fargo Tbakhi`,
     author: `Fargo Tbakhi`,
-    description: "A portfolio site for the one and only Fargo",
+    description: "Writer and performance artist",
     siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
     social: {
-      twitter: `kylemathews`
+      twitter: `youknowfargo`
     }
   },
   pathPrefix: "/fargos-website",
   plugins: [
+    'gatsby-plugin-styled-components',
     {
       resolve: `gatsby-source-filesystem`,
       options: {

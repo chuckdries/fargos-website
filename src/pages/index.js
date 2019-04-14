@@ -1,14 +1,16 @@
 import React from "react";
-import { Link, graphql } from "gatsby";
+import { graphql } from "gatsby";
 import * as R from "ramda";
+import styled from "styled-components";
 
 import Bio from "../components/bio";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-// import { rhythm } from "../utils/typography";
 import FrontPageSection from "../components/FrontPageSection";
 
 const getSection = slug => slug.split("/")[1];
+
+
 
 class BlogIndex extends React.Component {
   render() {
@@ -35,7 +37,7 @@ class BlogIndex extends React.Component {
           title="Home"
           keywords={[`blog`, `gatsby`, `javascript`, `react`]}
         />
-        <Bio />
+        {/* <Bio /> */}
         <FrontPageSection posts={poetry} title="poetry" />
         <FrontPageSection posts={performance} title="performance" />
         {R.map(

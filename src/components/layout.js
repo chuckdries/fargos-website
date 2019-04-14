@@ -1,66 +1,60 @@
-import React from "react"
-import { Link } from "gatsby"
+import React from "react";
+import { Link } from "gatsby";
+import styled from "styled-components";
 
-// import { rhythm, scale } from "../utils/typography"
-
+const Header = styled.header`
+  margin-left: 120px;
+  display: flex;
+  flex-direction: column;
+  /* overflow: auto; */
+  /* display: flex; */
+    /* padding: 0; */
+  h1 {
+    font-size: 1em;
+    font-weight: normal;
+    margin: 16px 0;
+  }
+  h2 {
+    font-size: 1em;
+    font-weight: normal;
+    margin: 16px 0;
+  }
+`;
 class Layout extends React.Component {
   render() {
-    const { location, title, children } = this.props
-    const rootPath = `${__PATH_PREFIX__}/`
-    let header
+    const { location, title, children } = this.props;
+    const rootPath = `${__PATH_PREFIX__}/`;
+    let header;
 
-    if (location.pathname === rootPath) {
-      header = (
-        <h1
+    header = (
+      <>
+      <h1>
+        <Link
           style={{
-            // ...scale(1.5),
-            // marginBottom: rhythm(1.5),
-            marginTop: 0,
+            boxShadow: `none`,
+            textDecoration: `none`,
+            color: `inherit`
           }}
+          to={`/`}
         >
-          <Link
-            style={{
-              boxShadow: `none`,
-              textDecoration: `none`,
-              color: `inherit`,
-            }}
-            to={`/`}
-          >
-            {title}
-          </Link>
-        </h1>
-      )
-    } else {
-      header = (
-        <h3
-          style={{
-            fontFamily: `Montserrat, sans-serif`,
-            marginTop: 0,
-          }}
-        >
-          <Link
-            style={{
-              boxShadow: `none`,
-              textDecoration: `none`,
-              color: `inherit`,
-            }}
-            to={`/`}
-          >
-            {title}
-          </Link>
-        </h3>
-      )
-    }
+          {title}
+        </Link>
+      </h1>
+      <h2>Writer and performance artist</h2>
+      </>
+    );
     return (
       <div
         style={{
           marginLeft: `auto`,
           marginRight: `auto`,
-          // maxWidth: rhythm(24),
+          maxWidth: "800px",
+          lineHeight: "1.6",
+          paddingTop: "2em"
           // padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
         }}
       >
-        <header>{header}</header>
+        <Header>{header}</Header>
         <main>{children}</main>
         <footer>
           © {new Date().getFullYear()}, Built with
@@ -68,8 +62,8 @@ class Layout extends React.Component {
           <a href="https://www.gatsbyjs.org">Gatsby</a>
         </footer>
       </div>
-    )
+    );
   }
 }
 
-export default Layout
+export default Layout;
