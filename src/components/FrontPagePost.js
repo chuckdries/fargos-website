@@ -7,7 +7,7 @@ const FrontPageLi = styled.li`
 `
 
 const FrontPagePostLink = styled(Link)`
-  text-decoration: italic;
+  font-style: italic;
 `
 
 const FrontPagePostExcerpt = styled.p`

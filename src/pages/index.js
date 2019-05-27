@@ -38,8 +38,8 @@ class BlogIndex extends React.Component {
           keywords={[`blog`, `gatsby`, `javascript`, `react`]}
         />
         {/* <Bio /> */}
-        <FrontPageSection posts={poetry} title="poetry" />
-        <FrontPageSection posts={performance} title="performance" />
+        <FrontPageSection posts={poetry} title="Poetry" />
+        <FrontPageSection posts={performance} title="Performance" />
         {R.map(
           cat => (
             <FrontPageSection posts={otherCategories[cat]} title={cat} />
