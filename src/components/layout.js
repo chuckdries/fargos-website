@@ -25,22 +25,30 @@ class Layout extends React.Component {
     const { location, title, children } = this.props;
     const rootPath = `${__PATH_PREFIX__}/`;
     let header;
-
+    console.log('location', location);
     header = (
       <>
-      <h1>
-        <Link
-          style={{
-            boxShadow: `none`,
-            textDecoration: `none`,
-            color: `inherit`
-          }}
-          to={`/`}
-        >
-          {title}
-        </Link>
-      </h1>
-      <h2>Writer and performance artist</h2>
+        <h1>
+          <Link
+            style={{
+              boxShadow: `none`,
+              textDecoration: `none`,
+              color: `inherit`,
+              overflow: 'auto'
+            }}
+            to={rootPath}
+          >
+            {location.pathname !== rootPath &&
+              <span
+                style={{
+                  position: 'absolute',
+                  marginLeft: '-15px',
+                  color: 'grey'
+                }}
+              >&#9664;</span>}{title}
+          </Link>
+        </h1>
+        <h2>Writer and performance artist</h2>
       </>
     );
     return (
@@ -56,11 +64,11 @@ class Layout extends React.Component {
       >
         <Header>{header}</Header>
         <main>{children}</main>
-        <footer>
+        {/* <footer>
           © {new Date().getFullYear()}, Built with
           {` `}
           <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
+        </footer> */}
       </div>
     );
   }

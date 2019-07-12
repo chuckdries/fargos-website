@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "gatsby";
 import FrontPagePost from "./FrontPagePost";
 import styled from "styled-components";
+import { capFirst } from '../utils';
 
 const FrontPageSectionBase = styled.section`
   display: flex;
@@ -28,7 +29,7 @@ const FrontPageSectionList = styled.ul`
 const FrontPageSection = ({ posts, title }) => (
   <FrontPageSectionBase>
     <FrontPageSectionHeader>
-      <Link to={title}>{title}</Link>
+      <Link to={title.toLowerCase()}>{capFirst(title)}</Link>
     </FrontPageSectionHeader>
     <FrontPageSectionList>
       {posts.map(post => {

@@ -1,8 +1,12 @@
 import React from "react";
-import { Link, graphql } from "gatsby";
-import * as R from "ramda";
+import {
+  Link,
+  // graphql
+} from "gatsby";
+// import * as R from "ramda";
 import Layout from "../components/layout";
 import FrontPageSection from "../components/FrontPageSection";
+import { capFirst } from '../utils';
 
 class sectionPage extends React.Component {
   render() {
