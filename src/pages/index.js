@@ -3,14 +3,13 @@ import { graphql } from "gatsby";
 import * as R from "ramda";
 import styled from "styled-components";
 
+import FrontPageHeader from "../components/FrontPageHeader";
 import Bio from "../components/bio";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import FrontPageSection from "../components/FrontPageSection";
 
 const getSection = slug => slug.split("/")[1];
-
-
 
 class BlogIndex extends React.Component {
   render() {
@@ -32,21 +31,23 @@ class BlogIndex extends React.Component {
     console.log(otherCategories);
 
     return (
-      <Layout location={this.props.location} title={siteTitle}>
-        <SEO
-          title="Home"
-          keywords={[`blog`, `gatsby`, `javascript`, `react`]}
-        />
-        {/* <Bio /> */}
-        <FrontPageSection posts={poetry} title="Poetry" />
-        <FrontPageSection posts={performance} title="Performance" />
-        {R.map(
-          cat => (
-            <FrontPageSection posts={otherCategories[cat]} title={cat} />
-          ),
-          R.keys(otherCategories)
-        )}
-      </Layout>
+      <>
+        <FrontPageHeader />
+        <Layout location={this.props.location} title={siteTitle}>
+          <SEO
+            title="Home"
+            keywords={[`blog`, `gatsby`, `javascript`, `react`]}
+          />
+          <FrontPageSection posts={poetry} title="Poetry" />
+          <FrontPageSection posts={performance} title="Performance" />
+          {R.map(
+            cat => (
+              <FrontPageSection posts={otherCategories[cat]} title={cat} />
+            ),
+            R.keys(otherCategories)
+          )}
+        </Layout>
+      </>
     );
   }
 }

@@ -4,7 +4,7 @@ import { Link, graphql } from "gatsby";
 import Bio from "../components/bio";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import styled from 'styled-components';
+import styled from "styled-components";
 // import { rhythm, scale } from "../utils/typography"
 
 const PostTitle = styled.h1`
@@ -17,7 +17,7 @@ class BlogPostTemplate extends React.Component {
     const post = this.props.data.markdownRemark;
     const siteTitle = this.props.data.site.siteMetadata.title;
     const { previous, next } = this.props.pageContext;
-    const section = this.props.location.pathname.split('/')[1];
+    const section = this.props.location.pathname.split("/")[1];
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -37,16 +37,14 @@ class BlogPostTemplate extends React.Component {
           </p>
           <div dangerouslySetInnerHTML={{ __html: post.html }} />
           <hr
-            style={
-              {
-                // marginBottom: rhythm(1),
-                marginTop: '3em',
-              }
-            }
+            style={{
+              // marginBottom: rhythm(1),
+              marginTop: "3em"
+            }}
           />
           {/* <Bio /> */}
 
-          <ul
+          {/* <ul
             style={{
               display: `flex`,
               flexWrap: `wrap`,
@@ -69,7 +67,7 @@ class BlogPostTemplate extends React.Component {
                 </Link>
               )}
             </li>
-          </ul>
+          </ul> */}
         </div>
       </Layout>
     );

@@ -1,9 +1,7 @@
 import React from "react";
 import { StaticQuery, graphql } from "gatsby";
-import styled from 'styled-components';
+import styled from "styled-components";
 import Image from "gatsby-image";
-
-
 
 function Bio() {
   return (
@@ -14,7 +12,7 @@ function Bio() {
         return (
           <div>
             Fargo is a writer and performance artist.
-            {/* <Image
+            <Image
               fixed={data.avatar.childImageSharp.fixed}
               alt={author}
               style={{
@@ -26,7 +24,7 @@ function Bio() {
               imgStyle={{
                 borderRadius: `50%`
               }}
-            /> */}
+            />
             {/* <BioText>Writer and performance artist</BioText> */}
             {/* <p>
               <strong>{author}</strong>
