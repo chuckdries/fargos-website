@@ -23,18 +23,24 @@ const InnerBgDiv = styled.div`
   min-width: 100%;
   /* background-position: bottom center; */
   margin: 0;
-  opacity: 0.5;
+  /* opacity: 0.5; */
   /* color: transparent; */
   color: white;
   /* color: #111; */
+  text-align: right;
   h1 {
+    opacity: 0.5;
     font-family: "Ultra", serif;
     font-size: 20vw;
-    text-align: right;
     font-weight: 900;
+    /* margin-bottom: 0px; */
     margin: 0;
-    background: rgba(0,0,0,.5);
+    /* background: rgba(0,0,0,.5); */
     display: inline-block
+  }
+  h2 {
+    /* padding-bottom: 2em; */
+    /* margin-top:0px; */
   }
 `;
 
@@ -57,6 +63,7 @@ function Header() {
             >
               <InnerBgDiv>
                 <h1>{author}</h1>
+                <h2>writer - performance artist - he/him</h2>
               </InnerBgDiv>
             </BgDiv>
             {/* <BioText>Writer and performance artist</BioText> */}
