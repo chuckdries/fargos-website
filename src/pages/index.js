@@ -6,6 +6,17 @@ import Image from "../components/image";
 import SEO from "../components/seo";
 import Header from "../components/header";
 
+const bio = (
+  <p>
+    Fargo Tbakhi (he/him) is a queer Palestinian-american writer and performer
+    from Phoenix, Arizona. He is the winner of the 2018 Ghassan Kanafani
+    Resistance Arts Scholarship, a Pushcart nominee, and a 2020 Desert Nights,
+    Rising Stars fellow. His work is published in Cotton Xenomorph, Mizna,
+    Cosmonauts Avenue, Glass: a Journal of Poetry, Peach Mag and elsewhere. He
+    tweets @YouKnowFargo and probably wants to hold your hand.
+  </p>
+);
+
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
@@ -20,9 +31,11 @@ const IndexPage = () => (
         <h1>Fargo Tbakhi</h1>
       </div> */}
       <Header />
+      {bio}
     </Image>
     <div className="hide-until-small">
       <Header />
+      {bio}
     </div>
   </Layout>
 );
