@@ -1,8 +1,10 @@
 module.exports = {
   siteMetadata: {
     title: `Fargo Tbakhi`,
-    description: `Performance artist`,
-    author: `@youknowfargo`
+    description: `Poet & Performance Artist`,
+    twitter: `@youknowfargo`,
+    email: `fargotbakhi@gmail.com`,
+    author: `Fargo Tbakhi`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

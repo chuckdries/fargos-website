@@ -1,6 +1,6 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
-import Img from "gatsby-image";
+import BackgroundImage from "gatsby-background-image";
 
 /*
  * This component is built using `gatsby-image` to automatically serve optimized
@@ -13,12 +13,12 @@ import Img from "gatsby-image";
  * - `useStaticQuery`: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-const Image = ({ src }) => {
+const Image = ({ children }) => {
   const data = useStaticQuery(graphql`
     query {
-      file(relativePath: { eq: "gatsby-astronaut.png" }) {
+      file(relativePath: { eq: "fargo-dirt.jpg" }) {
         childImageSharp {
-          fluid(maxWidth: 300) {
+          fluid {
             ...GatsbyImageSharpFluid
           }
         }
@@ -26,7 +26,16 @@ const Image = ({ src }) => {
     }
   `);
 
-  return <Img fluid={data.file.childImageSharp.fluid} />;
+  return (
+    <BackgroundImage
+      style={{
+        backgroundPosition: "right bottom"
+      }}
+      fluid={data.file.childImageSharp.fluid}
+    >
+      {children}
+    </BackgroundImage>
+  );
 };
 
 export default Image;
