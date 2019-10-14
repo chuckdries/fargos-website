@@ -13,7 +13,8 @@ const bio = (
     Resistance Arts Scholarship, a Pushcart nominee, and a 2020 Desert Nights,
     Rising Stars fellow. His work is published in Cotton Xenomorph, Mizna,
     Cosmonauts Avenue, Glass: a Journal of Poetry, Peach Mag and elsewhere. He
-    tweets @YouKnowFargo and probably wants to hold your hand.
+    tweets <a href="https://twitter.com/YouKnowFargo">@YouKnowFargo</a> and
+    probably wants to hold your hand.
   </p>
 );
 
