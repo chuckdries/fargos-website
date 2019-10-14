@@ -14,6 +14,7 @@
     "gatsby-plugin-sharp": "^2.2.29",
     "gatsby-source-filesystem": "^2.1.31",
     "gatsby-transformer-sharp": "^2.2.21",
+    "gh-pages": "^2.1.1",
     "intersection-observer": "^0.7.0",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
@@ -31,6 +32,7 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \""
