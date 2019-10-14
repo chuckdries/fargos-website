@@ -1,6 +1,7 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import BackgroundImage from "gatsby-background-image";
+import style from "./header.css";
 
 /*
  * This component is built using `gatsby-image` to automatically serve optimized
@@ -13,7 +14,7 @@ import BackgroundImage from "gatsby-background-image";
  * - `useStaticQuery`: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-const Image = ({ children }) => {
+const HeaderImage = ({ children }) => {
   const data = useStaticQuery(graphql`
     query {
       file(relativePath: { eq: "fargo-dirt.jpg" }) {
@@ -28,8 +29,10 @@ const Image = ({ children }) => {
 
   return (
     <BackgroundImage
+      className={style["gatsby-image-wrapper"]}
       style={{
         backgroundPosition: "right bottom"
+        // color: "transparent"
       }}
       fluid={data.file.childImageSharp.fluid}
     >
@@ -38,4 +41,4 @@ const Image = ({ children }) => {
   );
 };
 
-export default Image;
+export default HeaderImage;

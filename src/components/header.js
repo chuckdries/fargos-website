@@ -24,10 +24,12 @@ const Header = ({ siteTitle }) => {
         {/* {siteTitle} */}
         {site.siteMetadata.title}
       </h1>
-      <span>{site.siteMetadata.description}</span>
-      <a href={`mailto:${site.siteMetadata.email}`}>
-        {site.siteMetadata.email}
-      </a>
+      <div>
+        <span>{site.siteMetadata.description} </span>
+        <a href={`mailto:${site.siteMetadata.email}`}>
+          {site.siteMetadata.email}
+        </a>
+      </div>
     </header>
   );
 };

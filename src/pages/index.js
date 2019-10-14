@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "gatsby";
 
 import Layout from "../components/layout";
-import Image from "../components/image";
+import HeaderImage from "../components/HeaderImage";
 import SEO from "../components/seo";
 import Header from "../components/header";
 
@@ -27,15 +27,16 @@ const IndexPage = () => (
     <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
     </div>
   <Link to="/page-2/">Go to page 2</Link> */}
-    <Image>
-      {/* <div className="image-children">
+    <HeaderImage>
+      <Header />
+    </HeaderImage>
+    {/* <div className="image-children">
         <h1>Fargo Tbakhi</h1>
       </div> */}
-      <Header />
-      {bio}
-    </Image>
-    <div className="hide-until-small">
-      <Header />
+    {/* <Header />
+      {bio} */}
+    <div className="">
+      {/* <Header /> */}
       {bio}
     </div>
   </Layout>
