@@ -1,78 +1,21 @@
-import React from "react";
-import { graphql } from "gatsby";
-import * as R from "ramda";
-import styled from "styled-components";
+import React from "react"
+import { Link } from "gatsby"
 
-import Bio from "../components/bio";
-import Layout from "../components/layout";
-import SEO from "../components/seo";
-import FrontPageSection from "../components/FrontPageSection";
+import Layout from "../components/layout"
+import Image from "../components/image"
+import SEO from "../components/seo"
 
-const getSection = slug => slug.split("/")[1];
+const IndexPage = () => (
+  <Layout>
+    <SEO title="Home" />
+    <h1>Hi people</h1>
+    <p>Welcome to your new Gatsby site.</p>
+    <p>Now go build something great.</p>
+    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
+      <Image />
+    </div>
+    <Link to="/page-2/">Go to page 2</Link>
+  </Layout>
+)
 
-
-
-class BlogIndex extends React.Component {
-  render() {
-    const { data } = this.props;
-    const siteTitle = data.site.siteMetadata.title;
-    console.log(data.site.siteMetadata.frontPageCategories);
-    const posts = data.allMarkdownRemark.edges;
-    console.log(posts);
-    const { poetry, performance, ...otherCategories } = R.pipe(
-      R.map(R.prop("node")),
-      R.groupBy(
-        R.pipe(
-          R.path(["fields", "slug"]),
-          getSection
-        )
-      )
-    )(posts);
-
-    console.log(otherCategories);
-
-    return (
-      <Layout location={this.props.location} title={siteTitle}>
-        <SEO
-          title="Home"
-          keywords={[`blog`, `gatsby`, `javascript`, `react`]}
-        />
-        {/* <Bio /> */}
-        <FrontPageSection posts={poetry} title="Poetry" />
-        <FrontPageSection posts={performance} title="Performance" />
-        {R.map(
-          cat => (
-            <FrontPageSection posts={otherCategories[cat]} title={cat} />
-          ),
-          R.keys(otherCategories)
-        )}
-      </Layout>
-    );
-  }
-}
-
-export default BlogIndex;
-
-export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      edges {
-        node {
-          excerpt
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
-          }
-        }
-      }
-    }
-  }
-`;
+export default IndexPage

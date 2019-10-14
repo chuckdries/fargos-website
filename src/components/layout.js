@@ -1,77 +1,52 @@
-import React from "react";
-import { Link } from "gatsby";
-import styled from "styled-components";
+/**
+ * Layout component that queries for data
+ * with Gatsby's useStaticQuery component
+ *
+ * See: https://www.gatsbyjs.org/docs/use-static-query/
+ */
 
-const Header = styled.header`
-  margin-left: 120px;
-  display: flex;
-  flex-direction: column;
-  /* overflow: auto; */
-  /* display: flex; */
-    /* padding: 0; */
-  h1 {
-    font-size: 1em;
-    font-weight: normal;
-    margin: 16px 0;
-  }
-  h2 {
-    font-size: 1em;
-    font-weight: normal;
-    margin: 16px 0;
-  }
-`;
-class Layout extends React.Component {
-  render() {
-    const { location, title, children } = this.props;
-    const rootPath = `${__PATH_PREFIX__}/`;
-    let header;
-    console.log('location', location);
-    header = (
-      <>
-        <h1>
-          <Link
-            style={{
-              boxShadow: `none`,
-              textDecoration: `none`,
-              color: `inherit`,
-              overflow: 'auto'
-            }}
-            to={rootPath}
-          >
-            {location.pathname !== rootPath &&
-              <span
-                style={{
-                  position: 'absolute',
-                  marginLeft: '-15px',
-                  color: 'grey'
-                }}
-              >&#9664;</span>}{title}
-          </Link>
-        </h1>
-        <h2>Writer and performance artist</h2>
-      </>
-    );
-    return (
+import React from "react"
+import PropTypes from "prop-types"
+import { useStaticQuery, graphql } from "gatsby"
+
+import Header from "./header"
+import "./layout.css"
+
+const Layout = ({ children }) => {
+  const data = useStaticQuery(graphql`
+    query SiteTitleQuery {
+      site {
+        siteMetadata {
+          title
+        }
+      }
+    }
+  `)
+
+  return (
+    <>
+      <Header siteTitle={data.site.siteMetadata.title} />
       <div
         style={{
-          marginLeft: `auto`,
-          marginRight: `auto`,
-          maxWidth: "800px",
-          lineHeight: "1.6",
-          paddingTop: "2em"
-          // padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
+          margin: `0 auto`,
+          maxWidth: 960,
+          padding: `0px 1.0875rem 1.45rem`,
+          paddingTop: 0,
         }}
       >
-        <Header>{header}</Header>
         <main>{children}</main>
-        {/* <footer>
+        <footer>
           © {new Date().getFullYear()}, Built with
           {` `}
           <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer> */}
+        </footer>
       </div>
-    );
-  }
+    </>
+  )
 }
 
-export default Layout;
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
+}
+
+export default Layout
