@@ -1,0 +1,4 @@
+thoughts:
+use horizontal scroll react-spring thing to scroll through pics of solo performance
+use a breakpoint to swap to portrait image instead of max-height and content repositioning?
+should the bg component handle placing its children below it itself? or should it just be dumb and I have to do everything twice like now? Or should it not do anything and the children I pass have to hide themselves?
