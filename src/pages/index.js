@@ -7,6 +7,7 @@ import SEO from "../components/seo";
 import Header from "../components/header";
 
 const bio = (
+  <>
   <p>
     Fargo Tbakhi (he/him) is a queer Palestinian-american writer and performer
     from Phoenix, Arizona. He is the winner of the 2018 Ghassan Kanafani
@@ -16,6 +17,9 @@ const bio = (
     tweets <a href="https://twitter.com/YouKnowFargo">@YouKnowFargo</a> and
     probably wants to hold your hand.
   </p>
+  <p>Fargo is available for workshops and readings. For booking, please email details to <a href="mailto:fargotbakhi@gmail.com">fargotbakhi@gmail.com</a></p>
+  <p>To book <em>My Father, My Martyr, and Me</em>, please include the word "performance" in the subject line.</p>
+  </>
 );
 
 const IndexPage = () => (
