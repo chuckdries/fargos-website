@@ -37,7 +37,7 @@
     "deploy": "gatsby build --prefix-paths && gh-pages -d public",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "type-check": "tsc --noEmit",
+    "type-check": "tsc --noEmit --jsx react",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \""
   },
   "repository": {
