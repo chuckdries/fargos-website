@@ -1,23 +1,18 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
 const { createFilePath } = require("gatsby-source-filesystem")
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
   if (node.internal.type === `Mdx`) {
     const value = createFilePath({ node, getNode })
-    console.log(value)
+    console.log('filePath', value)
     createNodeField({
-      // Name of the field you are adding
       name: "slug",
-      // Individual MDX node
       node,
-      // Generated value based on filepath with "blog" prefix. you
-      // don't need a separating "/" before the value because
-      // createFilePath returns a path with the leading "/".
       value:  `${value}`,
+    })
+    createNodeField({
+      name: "type",
+      node,
+      value: value.split('/')[1]
     })
   }
 }
@@ -25,7 +20,6 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 const path = require("path")
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
-  // Destructure the createPage function from the actions object
   const { createPage } = actions
 
   const result = await graphql(`
@@ -35,7 +29,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           node {
             id
             fields {
-              slug
+              slug,
+              type
             }
           }
         }
@@ -48,10 +43,10 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
 
   // Create blog post pages.
-  const posts = result.data.allMdx.edges
+  const markdowns = result.data.allMdx.edges
 
   // you'll call `createPage` for each result
-  posts.forEach(({ node }, index) => {
+  markdowns.forEach(({ node }, index) => {
     createPage({
       // This is the slug you created before
       // (or `node.frontmatter.slug`)
@@ -62,7 +57,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       // our page layout component
       context: {
         id: node.id,
-        test: 'hey there'
+        test: 'hey there',
+        type: node.fields.type
       },
     })
   })

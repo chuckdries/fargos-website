@@ -16,6 +16,9 @@ main {
   display: flex;
   flex-direction: column;
 }
+.post-container {
+  padding: 1em;
+}
 .gatsby-image-wrapper {
   padding: 1em;
   flex: 1 0 auto;

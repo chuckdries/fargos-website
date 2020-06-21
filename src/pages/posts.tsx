@@ -2,9 +2,9 @@ import React from "react"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { graphql, Link, PageProps } from "gatsby"
+import { graphql, Link } from "gatsby"
 
-const PoemsList: React.FC<PageProps> = props => {
+const PostsList = props => {
   const { edges: posts } = props.data.allMdx
   console.log("post props", posts)
   return (
@@ -24,14 +24,13 @@ const PoemsList: React.FC<PageProps> = props => {
 }
 
 export const query = graphql`
-  query PoemsList {
-    allMdx(filter: {fields: {type: {eq: "posts"}}}) {
+  query PostsList {
+    allMdx(filter: {fields: {slug: {regex: "^/posts/.+/"}}}) {
       edges {
         node {
           excerpt
           frontmatter {
-            title,
-            foo
+            title
           }
           fields {
             slug
@@ -42,4 +41,4 @@ export const query = graphql`
   }
 `
 
-export default PoemsList
+export default PostsList
