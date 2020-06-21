@@ -7,7 +7,6 @@ module.exports = {
     author: `Fargo Tbakhi`
   },
   plugins: [
-    `gatsby-plugin-typescript`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-mdx`,
     {
