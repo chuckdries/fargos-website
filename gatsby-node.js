@@ -1,106 +1,69 @@
-const path = require(`path`);
-const R = require("ramda");
-const { createFilePath } = require(`gatsby-source-filesystem`);
+/**
+ * Implement Gatsby's Node APIs in this file.
+ *
+ * See: https://www.gatsbyjs.org/docs/node-apis/
+ */
+const { createFilePath } = require("gatsby-source-filesystem")
+exports.onCreateNode = ({ node, actions, getNode }) => {
+  const { createNodeField } = actions
+  if (node.internal.type === `Mdx`) {
+    const value = createFilePath({ node, getNode })
+    console.log(value)
+    createNodeField({
+      // Name of the field you are adding
+      name: "slug",
+      // Individual MDX node
+      node,
+      // Generated value based on filepath with "blog" prefix. you
+      // don't need a separating "/" before the value because
+      // createFilePath returns a path with the leading "/".
+      value:  `${value}`,
+    })
+  }
+}
 
-const getSection = slug => slug.split("/")[1];
+const path = require("path")
 
-exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions;
+exports.createPages = async ({ graphql, actions, reporter }) => {
+  // Destructure the createPage function from the actions object
+  const { createPage } = actions
 
-  const blogPost = path.resolve(`./src/templates/blog-post.js`);
-  const sectionPage = path.resolve("./src/templates/section.js");
-  return graphql(
-    `
-      {
-        allMarkdownRemark(
-          sort: { fields: [frontmatter___date], order: DESC }
-          limit: 1000
-        ) {
-          edges {
-            node {
-              fields {
-                slug
-              }
-              frontmatter {
-                title
-              }
+  const result = await graphql(`
+    query {
+      allMdx {
+        edges {
+          node {
+            id
+            fields {
+              slug
             }
           }
         }
       }
-    `
-  ).then(result => {
-    if (result.errors) {
-      throw result.errors;
     }
+  `)
 
-    // Create blog posts pages.
-    const posts = result.data.allMarkdownRemark.edges;
-
-    posts.forEach((post, index) => {
-      const previous =
-        index === posts.length - 1 ? null : posts[index + 1].node;
-      const next = index === 0 ? null : posts[index - 1].node;
-
-      createPage({
-        path: post.node.fields.slug,
-        component: blogPost,
-        context: {
-          slug: post.node.fields.slug,
-          previous,
-          next
-        }
-      });
-    });
-
-    // create category pages
-    const categories = R.uniq(
-      R.map(R.path(["node", "frontmatter", "category"]), Object.values(posts))
-    );
-
-    // create section pages
-    const sections = R.uniq(
-      R.map(
-        R.pipe(
-          R.path(["node", "fields", "slug"]),
-          getSection
-        ),
-        posts
-      )
-    );
-
-    sections.forEach(section => {
-      createPage({
-        path: `/${section}`,
-        component: sectionPage,
-        context: {
-          slug: `/${section}`
-        }
-      });
-    });
-
-    // categories.forEach(category => {
-    //   createPage({
-
-    //   })
-    // });
-
-    // const categories = R.pipe(
-    //   R.map(R.prop("node")),
-    //   R.groupBy(R.path(["frontmatter", "category"]))
-    // )(posts)
-  });
-};
-
-exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions;
-
-  if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode });
-    createNodeField({
-      name: `slug`,
-      node,
-      value
-    });
+  if (result.errors) {
+    reporter.panicOnBuild('🚨  ERROR: Loading "createPages" query')
   }
-};
+
+  // Create blog post pages.
+  const posts = result.data.allMdx.edges
+
+  // you'll call `createPage` for each result
+  posts.forEach(({ node }, index) => {
+    createPage({
+      // This is the slug you created before
+      // (or `node.frontmatter.slug`)
+      path: node.fields.slug,
+      // This component will wrap our MDX content
+      component: path.resolve(`./src/components/posts-page-layout.js`),
+      // You can use the values in this context in
+      // our page layout component
+      context: {
+        id: node.id,
+        test: 'hey there'
+      },
+    })
+  })
+}

@@ -1,74 +1,58 @@
 module.exports = {
   siteMetadata: {
     title: `Fargo Tbakhi`,
+    description: `Poet & Performance Artist`,
+    twitter: `@youknowfargo`,
+    email: `fargotbakhi@gmail.com`,
     author: `Fargo Tbakhi`,
-    description: "Writer and performance artist",
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
-    social: {
-      twitter: `youknowfargo`
-    }
   },
-  pathPrefix: "/fargos-website",
   plugins: [
-    'gatsby-plugin-styled-components',
+    `gatsby-plugin-typescript`,
+    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/content/posts`,
-        name: `posts`
-      }
+        name: `posts`,
+        path: `${__dirname}/content/`,
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/content/assets`,
-        name: `assets`
-      }
-    },
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 590
-            }
-          },
-          {
-            resolve: `gatsby-remark-responsive-iframe`,
-            options: {
-              wrapperStyle: `margin-bottom: 1.0725rem`
-            }
-          },
-          `gatsby-remark-prismjs`,
-          `gatsby-remark-copy-linked-files`,
-          `gatsby-remark-smartypants`
-        ]
-      }
+        name: `images`,
+        path: `${__dirname}/src/images`,
+      },
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-remark-images`,
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: `gatsby-plugin-mdx`,
       options: {
-        //trackingId: `ADD YOUR TRACKING ID HERE`,
-      }
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1200,
+            },
+          },
+        ],
+      },
     },
-    `gatsby-plugin-feed`,
-    {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
-        start_url: `/`,
-        background_color: `#ffffff`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `content/assets/gatsby-icon.png`
-      }
-    },
-    `gatsby-plugin-offline`,
-    `gatsby-plugin-react-helmet`
-  ]
+    // {
+    //   resolve: `gatsby-plugin-manifest`,
+    //   options: {
+    //     name: `fargo tbakhi`,
+    //     short_name: `fargo`,
+    //     start_url: `/`
+    //     // background_color: `#663399`,
+    //     // theme_color: `#663399`,
+    //     // display: `minimal-ui`,
+    //     // icon: `src/images/gatsby-icon.png` // This path is relative to the root of the site.
+    //   }
+    // }
+    // this (optional) plugin enables Progressive Web App + Offline functionality
+    // To learn more, visit: https://gatsby.dev/offline
+    // `gatsby-plugin-offline`,
+  ],
 };
