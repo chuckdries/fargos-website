@@ -10,7 +10,7 @@ const PostsList = props => {
   console.log("post props", posts)
   return (
     <Layout>
-      <SEO title="All Posts" />
+      <SEO title="All Performances" />
       <Header />
       <ul>
         {posts.map(({node}) => (
@@ -20,14 +20,13 @@ const PostsList = props => {
           </div>
         ))}
       </ul>
-      <p>hello world</p>
     </Layout>
   )
 }
 
 export const query = graphql`
-  query PoemsList {
-    allMdx(filter: {fields: {slug: {regex: "^/poems/.+/"}}}) {
+  query PerformancesList {
+    allMdx(filter: {fields: {slug: {regex: "^/performances/.+/"}}}) {
       edges {
         node {
           excerpt

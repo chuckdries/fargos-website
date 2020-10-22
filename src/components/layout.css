@@ -1,5 +1,6 @@
 h1 {
-  margin: 0;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 header {
   padding: 1em;
@@ -34,6 +35,9 @@ main {
 p {
   max-width: 400px;
   padding: 0 1em 1em 1em;
+}
+.post-container {
+  max-width: 600px;
 }
 @media screen and (max-width: 120vh) {
   .gatsby-image-wrapper * {

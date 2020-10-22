@@ -3,6 +3,7 @@ import React from "react"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Header from '../components/header'
 import { graphql, Link } from "gatsby"
 
 const PostsList = props => {
@@ -11,6 +12,7 @@ const PostsList = props => {
   return (
     <Layout>
       <SEO title="All Posts" />
+      <Header />
       <ul>
         {posts.map(({node}) => (
           <div>
