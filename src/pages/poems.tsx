@@ -15,12 +15,12 @@ const PostsList = props => {
       <ul>
         {posts.map(({node}) => (
           <div>
-            <Link target={node.frontmatter.externalLink ? '_blank' : undefined} to={node.frontmatter.externalLink || node.fields.slug}>{node.frontmatter.title}</Link>
-            <p>{node.excerpt}</p>
+            <h5 style={{ margin: 0 }}>{node.frontmatter.publication}</h5>
+            <Link target={node.frontmatter.externalLink ? '_blank' : undefined} to={node.frontmatter.externalLink || node.fields.slug}><h2 style={{ margin: '0 0 5px 0'}}>{node.frontmatter.title}</h2></Link>
+            <p style={{margin: 0}}>{node.excerpt}</p>
           </div>
         ))}
       </ul>
-      <p>hello world</p>
     </Layout>
   )
 }
@@ -32,6 +32,7 @@ export const query = graphql`
         node {
           excerpt
           frontmatter {
+            publication,
             title,
             externalLink
           }
