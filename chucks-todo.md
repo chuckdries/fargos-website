@@ -3,3 +3,5 @@
 - single component for content list items
 - aesthetic style
 - redirect external link pages?
+- procedural routing for sections in content?
+- hook up markdown renderer for .md/mdx files in `pages` folder (or some other mechanism for static file-pages)
