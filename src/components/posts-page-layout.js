@@ -25,6 +25,7 @@ export default function PageTemplate(props) {
           <MDXRenderer>{mdx.body}</MDXRenderer>
         </MDXProvider>
       </div>
+      {mdx.frontmatter.externalLink ? <a href={mdx.frontmatter.externalLink}>Read on {mdx.frontmatter.publication || mdx.frontmatter.externalLink}</a> : null}
     </Layout>
   );
 }
@@ -34,7 +35,9 @@ export const pageQuery = graphql`
       id
       body
       frontmatter {
-        title
+        publication,
+        title,
+        externalLink
       }
     }
   }

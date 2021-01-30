@@ -1,2 +1,5 @@
 - external link mechanism (externalUrl frontmatter field)
 - video embed support
+- single component for content list items
+- aesthetic style
+- redirect external link pages?
