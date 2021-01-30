@@ -15,7 +15,7 @@ const PostsList = props => {
       <ul>
         {posts.map(({node}) => (
           <div>
-            <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
+            <Link target={node.frontmatter.externalLink ? '_blank' : undefined} to={node.frontmatter.externalLink || node.fields.slug}>{node.frontmatter.title}</Link>
             <p>{node.excerpt}</p>
           </div>
         ))}
@@ -32,7 +32,8 @@ export const query = graphql`
         node {
           excerpt
           frontmatter {
-            title
+            title,
+            externalLink
           }
           fields {
             slug

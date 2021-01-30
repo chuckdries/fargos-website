@@ -1,0 +1,2 @@
+- external link mechanism (externalUrl frontmatter field)
+- video embed support
